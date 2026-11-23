@@ -77,6 +77,7 @@ def test_product_count(product):
     assert Category.product_count == before + 1
     assert category.product_count == Category.product_count
 
+
 def test_add_product_subclasses(smartphone, lawn_grass):
     category = Category("Товары", "", [])
     before = Category.product_count

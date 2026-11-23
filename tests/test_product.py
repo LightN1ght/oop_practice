@@ -1,7 +1,7 @@
 import pytest
 
-from src.product import Product
 from src.lawngrass import LawnGrass
+from src.product import Product
 from src.smartphone import Smartphone
 
 
@@ -56,6 +56,7 @@ def test_product_add():
     second = Product("Второй", "", 200, 2)
 
     assert first + second == 1400
+
 
 def test_smartphone_init(smartphone):
     assert isinstance(smartphone, Product)

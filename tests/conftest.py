@@ -1,7 +1,7 @@
 import pytest
 
-from src.product import Product
 from src.lawngrass import LawnGrass
+from src.product import Product
 from src.smartphone import Smartphone
 
 
@@ -10,6 +10,7 @@ def product():
     return Product(
         "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
     )
+
 
 @pytest.fixture()
 def smartphone():
