@@ -76,3 +76,24 @@ def test_product_count(product):
 
     assert Category.product_count == before + 1
     assert category.product_count == Category.product_count
+
+def test_add_product_subclasses(smartphone, lawn_grass):
+    category = Category("Товары", "", [])
+    before = Category.product_count
+
+    category.add_product(smartphone)
+    category.add_product(lawn_grass)
+
+    assert category.products.splitlines() == [str(smartphone), str(lawn_grass)]
+    assert Category.product_count == before + 2
+
+
+def test_add_invalid_product(category):
+    products_before = category.products
+    count_before = Category.product_count
+
+    with pytest.raises(TypeError):
+        category.add_product("Not a product")
+
+    assert category.products == products_before
+    assert Category.product_count == count_before
