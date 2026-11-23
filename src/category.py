@@ -1,3 +1,5 @@
+from src.product import Product
+
 class Category:
     category_count = 0
     product_count = 0
@@ -13,8 +15,11 @@ class Category:
         Category.category_count += 1
 
     def add_product(self, product):
-        self.__products.append(product)
-        Category.product_count += 1
+        if not isinstance(product, Product):
+            raise TypeError
+        else:
+            self.__products.append(product)
+            Category.product_count += 1
 
     @property
     def products(self):
