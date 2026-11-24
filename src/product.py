@@ -1,6 +1,7 @@
 from src.base_product import BaseProduct
 from src.logging_mixin import LoggingMixin
 
+
 class Product(LoggingMixin, BaseProduct):
     name: str
     description: str

@@ -1,5 +1,6 @@
 import pytest
 
+from src.base_product import BaseProduct
 from src.lawngrass import LawnGrass
 from src.product import Product
 from src.smartphone import Smartphone
@@ -101,3 +102,14 @@ def test_add_different_subclasses(smartphone, lawn_grass):
 def test_add_product_and_subclass(product, smartphone):
     with pytest.raises(TypeError):
         _ = product + smartphone
+
+
+def test_base_product_is_abstract():
+    with pytest.raises(TypeError):
+        BaseProduct()
+
+
+def test_product_logs_creation(capsys):
+    Product("Чай", "", 80, 15)
+
+    assert capsys.readouterr().out == "Product('Чай', '', 80, 15)\n"
