@@ -98,3 +98,19 @@ def test_add_invalid_product(category):
 
     assert category.products == products_before
     assert Category.product_count == count_before
+
+
+def test_middle_price_uses_products_in_current_category():
+    first = Product("Чай", "", 100, 10)
+    second = Product("Кофе", "", 200, 2)
+    category = Category("Напитки", "", [first, second])
+    Category("Другая категория", "", [Product("Торт", "", 900, 1)])
+
+    assert category.middle_price() == 150
+
+
+def test_middle_price_for_empty_category(product):
+    Category("Категория с товаром", "", [product])
+    empty_category = Category("Пустая категория", "", [])
+
+    assert empty_category.middle_price() == 0

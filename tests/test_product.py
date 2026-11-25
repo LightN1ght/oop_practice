@@ -113,3 +113,10 @@ def test_product_logs_creation(capsys):
     Product("Чай", "", 80, 15)
 
     assert capsys.readouterr().out == "Product('Чай', '', 80, 15)\n"
+
+
+def test_product_rejects_zero_quantity():
+    with pytest.raises(ValueError) as error:
+        Product("Чай", "", 100, 0)
+
+    assert str(error.value) == "Товар с нулевым количеством не может быть добавлен"
