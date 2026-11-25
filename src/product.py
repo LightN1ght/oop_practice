@@ -1,4 +1,8 @@
-class Product:
+from src.base_product import BaseProduct
+from src.logging_mixin import LoggingMixin
+
+
+class Product(LoggingMixin, BaseProduct):
     name: str
     description: str
     quantity: int
@@ -8,6 +12,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @classmethod
     def new_product(cls, product_data):
@@ -37,3 +42,10 @@ class Product:
             raise TypeError
         else:
             return self.price * self.quantity + other.price * other.quantity
+
+    def _repr_args(self):
+        return self.name, self.description, self.price, self.quantity
+
+    def __repr__(self):
+        args = ", ".join(repr(value) for value in self._repr_args())
+        return f"{type(self).__name__}({args})"
